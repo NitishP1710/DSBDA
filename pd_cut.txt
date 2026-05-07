@@ -1,0 +1,14 @@
+import pandas as pd
+
+df = pd.DataFrame({'scores': [5, 12, 18, 25, 33, 41, 48, 55]})
+
+# 1. Define your bin edges and labels
+bins = [0, 20, 40, 60]
+labels = ['Low', 'Medium', 'High']
+
+# 2. Use pd.cut to categorize values into these ranges
+df['range'] = pd.cut(df['scores'], bins=bins, labels=labels)
+
+# 3. Group by the new 'range' column
+grouped = df.groupby('range')['scores'].count()
+print(grouped)
